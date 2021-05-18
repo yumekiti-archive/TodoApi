@@ -36,13 +36,17 @@ rm:
 logs:
 	$(dc) -f ./docker/docker-compose.yml logs -f
 
-.PHONY: shPHP
-shPHP:
+.PHONY: sh-php
+sh-php:
 	$(dc) -f ./docker/docker-compose.yml exec php /bin/bash
 
-.PHONY: shDB
-shDB:
+.PHONY: sh-db
+sh-db:
 	$(dc) -f ./docker/docker-compose.yml exec db /bin/bash
+
+.PHONY: sh-node
+sh-node:
+	$(dc) -f ./docker/docker-compose.yml exec node /bin/bash
 
 .PHONY: d-rm
 d-rm:
