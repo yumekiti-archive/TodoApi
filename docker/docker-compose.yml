@@ -34,3 +34,11 @@ services:
             MYSQL_ROOT_PASSWORD: root
             TZ: Asia/Tokyo
         tty: true
+    
+    node:
+        image: node:14.17.0
+        container_name: todo-node
+        volumes:
+            - ../laravel:/mnt/laravel/
+            - ../vue:/mnt/vue/
+        tty: true
