@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+
+    nginx:    
+        image: nginx
+        container_name: todo-nginx
+        ports:
+            - 8090:80
+        volumes:
+            - ../laravel:/var/www
+            - ./nginx/conf.d/:/etc/nginx/conf.d/
+        depends_on:
+            - php
+  
+    php:
+        build: ./php/
+        user: ${user}
+        container_name: todo-php
+        volumes:
+            - ../laravel:/var/www
+        links:
+            - db
+        depends_on:
+            - db
+    
+    db:
+        build: ./mysql
+        container_name: todo-db
+        environment:
+            MYSQL_DATABASE: todo-database
+            MYSQL_USER: todo-user
+            MYSQL_PASSWORD: todo-password
+            MYSQL_ROOT_PASSWORD: root
+            TZ: Asia/Tokyo
+        tty: true
