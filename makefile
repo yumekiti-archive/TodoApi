@@ -53,3 +53,13 @@ d-rm:
 	docker stop `docker ps -aq` ;\
 	docker rm `docker ps -aq` ; \
 	docker rmi `docker images -q`
+
+.PHONY: npm
+npm:
+	$(dc) -f ./docker/docker-compose.yml exec node /bin/bash -c "npm install" && \
+	$(dc) -f ./docker/docker-compose.yml exec node /bin/bash -c "npm run serve"
+
+.PHONY: npm-laravel
+npm-laravel:
+	$(dc) -f ./docker/docker-compose.yml exec node /bin/bash -c "npm install --prefix=/mnt/laravel/" && \
+	$(dc) -f ./docker/docker-compose.yml exec node /bin/bash -c "npm run serve --prefix=/mnt/laravel/"
