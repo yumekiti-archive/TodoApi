@@ -3,7 +3,9 @@ version: "3"
 services:
 
     nginx:
-        build: ./nginx/
+        build:
+            context: ../
+            dockerfile: ./docker/nginx/dockerfile
         container_name: todo-nginx
         ports:
             - 8090:80
