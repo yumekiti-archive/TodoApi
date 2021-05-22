@@ -20,6 +20,7 @@ class TodoTableSeeder extends Seeder
                 'title' => $title,
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
+                'group_id' => '1',
             ]);
         }
 

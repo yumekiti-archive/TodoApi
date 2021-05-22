@@ -17,6 +17,7 @@ class CreateTodosTable extends Migration
             $table->bigIncrements('id');
             $table->string('title', 30);
             $table->timestamps();
+            $table->unsignedBigInteger('group_id');
         });
     }
 
