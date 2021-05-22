@@ -17,4 +17,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/test', 'Api\TestController@index');
+Route::get('/{groupId}/todos', 'Api\TodoController@show');
