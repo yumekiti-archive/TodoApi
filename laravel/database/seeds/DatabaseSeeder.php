@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
         ]);
         $group = Group::firstOrFail();
         $users->each(function($user) use($group){
-            $user->groups()->associate($group);
+            $user->group()->associate($group);
         });
         $users->each(function(User $user) { 
             $user->tokens()->create([
