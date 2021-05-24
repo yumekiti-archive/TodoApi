@@ -17,7 +17,10 @@ class CreateTodosTable extends Migration
             $table->bigIncrements('id');
             $table->string('title', 30);
             $table->timestamps();
+
+            //外部キー制約
             $table->unsignedBigInteger('group_id');
+            $table->foreign('group_id')->references('id')->on('groups');
         });
     }
 
