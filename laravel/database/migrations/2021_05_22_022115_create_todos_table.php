@@ -19,7 +19,7 @@ class CreateTodosTable extends Migration
             $table->timestamps();
 
             //外部キー制約
-            $table->unsignedBigInteger('group_id');
+            $table->unsignedBigInteger('group_id')->index();
             $table->foreign('group_id')->references('id')->on('groups');
         });
     }
