@@ -44,4 +44,4 @@ services:
             - ../vue:/mnt/vue/
         stdin_open: true
         tty: true
-        command: [sh, -c, npm install && npm run serve -- --port 8080]
+        command: [sh, -c, npm install && npm update && npm run serve -- --port 8080]

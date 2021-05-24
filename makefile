@@ -6,6 +6,7 @@ dc := user=$(USER) docker-compose
 .PHONY: test
 test:
 	make init
+	make seed
 
 .PHONY: init
 init:
@@ -56,10 +57,4 @@ d-rm:
 
 .PHONY: npm
 npm:
-	$(dc) -f ./docker/docker-compose.yml exec node /bin/bash -c "npm install" && \
-	$(dc) -f ./docker/docker-compose.yml exec node /bin/bash -c "npm run build"
-
-.PHONY: npm-laravel
-npm-laravel:
-	$(dc) -f ./docker/docker-compose.yml exec node /bin/bash -c "npm install --prefix=/mnt/laravel/" && \
-	$(dc) -f ./docker/docker-compose.yml exec node /bin/bash -c "npm run build --prefix=/mnt/laravel/"
+	$(dc) -f ./docker/docker-compose.yml exec node /bin/bash -c "npm install && npm run build"
