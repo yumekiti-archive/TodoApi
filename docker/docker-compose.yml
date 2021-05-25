@@ -40,7 +40,6 @@ services:
         build: ./node/
         container_name: todo-node
         volumes:
-            - ../laravel:/mnt/laravel/
             - ../vue:/mnt/vue/
         stdin_open: true
         tty: true
