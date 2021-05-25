@@ -12,6 +12,7 @@ class GroupTableSeeder extends Seeder
     public function run()
     {
         //
+
         $groups = ['グループ１', 'グループ２', 'グループ３'];
 
         foreach ($groups as $group) {
@@ -21,5 +22,6 @@ class GroupTableSeeder extends Seeder
                 'updated_at' => new DateTime(),
             ]);
         }
+
     }
 }

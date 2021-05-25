@@ -6,6 +6,7 @@ dc := user=$(USER) docker-compose
 .PHONY: test
 test:
 	make init
+	make seed
 
 .PHONY: init
 init:

@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','group_id'
     ];
 
     /**
@@ -42,9 +42,9 @@ class User extends Authenticatable
     /**
      *  userの所有するgroupを取得
      */
-    public function groups()
+    public function group()
     {
-        return $this->hasMany(Group::class);
+        return $this->belongsTo(Group::class);
     }
 
 }
