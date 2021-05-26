@@ -12,7 +12,7 @@ class GroupController extends Controller
 
     public function show($groupId){
         return Auth::user()
-            ->group()
+            ->groups()
             ->findOrFail($groupId)
             ->todos()
             ->get();

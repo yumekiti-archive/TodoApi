@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 use App\Group;
+use App\UserGroupChain;
 
 class User extends Authenticatable
 {
@@ -18,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','group_id'
+        'name', 'email', 'password'
     ];
 
     /**
@@ -42,9 +43,9 @@ class User extends Authenticatable
     /**
      *  userの所有するgroupを取得
      */
-    public function group()
+    public function groups()
     {
-        return $this->belongsToMany(Group::class);
+        return $this->belongsToMany(Group::class,'user_group_chains','user_id','group_id');
     }
 
 }
