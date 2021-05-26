@@ -9,12 +9,15 @@
 
         <v-card width="400px" class="mx-auto mt-5">
             <v-card-text>
-                <v-form @submit.prevent="login">
+                <v-form>
                     <v-text-field
                         prepend-icon="mdi-account-circle"
                         label="メールアドレス"
-                        v-model="mailaddress"
+                        v-model="email"
                     />
+                    <span v-if="errors.email">
+                        {{ errors.email[0] }}
+                    </span>
                     <v-text-field
                         v-bind:type="showPassword ? 'text' : 'password'"
                         @click:append="showPassword = !showPassword"
@@ -23,8 +26,11 @@
                         label="パスワード"
                         v-model="password"
                     />
+                    <span v-if="errors.password">
+                        {{ errors.password[0] }}
+                    </span>
                     <v-card-actions>
-                        <v-btn class="info" @click="submit">ログイン</v-btn>
+                        <v-btn class="info" @click="login">ログイン</v-btn>
                     </v-card-actions>
                 </v-form>
             </v-card-text>
@@ -44,27 +50,27 @@ export default {
     data(){
         return {
             showPassword : false,
-            mailaddress:'',
+            email:'',
             password:'',
-            errors: {},
+            errors: []
         }
     },
     methods:{
         login() {
-            axios.get("/sanctum/csrf-cookie").then(response => {
-                axios.post("/api/login", {
-                    email: this.email,
-                    password: this.password,
-                })
-                .then(response => {
-                    this.$store.dispatch('getUser')
-                    this.$router.push({name: 'home'})
-                })
-                .catch((error) => {
-                    this.errors = error.response.data.errors
-                })
+            axios
+            .post("/api/login", {
+                email: this.email,
+                password: this.password
             })
-        },
+            .then(response => {
+                console.log(response);
+                localStorage.setItem("auth", "ture");
+                this.$router.push("/");
+            })
+            .catch(error => {
+                this.errors = error.response.data.errors;
+            });
+        }
     }
 }
 </script>
