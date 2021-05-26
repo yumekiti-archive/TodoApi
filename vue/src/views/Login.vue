@@ -9,7 +9,7 @@
 
         <v-card width="400px" class="mx-auto mt-5">
             <v-card-text>
-                <v-form>
+                <v-form @submit.prevent="login">
                     <v-text-field
                         prepend-icon="mdi-account-circle"
                         label="メールアドレス"
@@ -34,6 +34,7 @@
 
 <script>
 import Header from '@/components/Header.vue'
+import axios from 'axios'
 
 export default {
     name: 'Login',
@@ -45,12 +46,25 @@ export default {
             showPassword : false,
             mailaddress:'',
             password:'',
+            errors: {},
         }
     },
     methods:{
-        submit(){
-            console.log(this.mailaddress,this.password)
-        }
+        login() {
+            axios.get("/sanctum/csrf-cookie").then(response => {
+                axios.post("/api/login", {
+                    email: this.email,
+                    password: this.password,
+                })
+                .then(response => {
+                    this.$store.dispatch('getUser')
+                    this.$router.push({name: 'home'})
+                })
+                .catch((error) => {
+                    this.errors = error.response.data.errors
+                })
+            })
+        },
     }
 }
 </script>

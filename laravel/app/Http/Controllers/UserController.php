@@ -14,23 +14,23 @@ class UserController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'email' => 'required|email',
+            'email'    => 'required|email',
             'password' => 'required'
         ]);
- 
+    
         if (Auth::attempt($credentials)) {
-            return response()->json(['message' => 'Login successful'], 200);
+            return ['message' => 'ログインしました。'];
         }
- 
+
         throw ValidationException::withMessages([
-            'email' => ['The provided credentials are incorrect'],
+            'email' => ['メールアドレスまたはパスワードが違います。'],
         ]);
     }
- 
+
     public function logout()
     {
         Auth::logout();
-        return response()->json(['message' => 'Logged out'], 200);
+        return ['message' => 'ログアウトしました。'];
     }
 
 }
