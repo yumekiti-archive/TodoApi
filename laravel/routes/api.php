@@ -20,4 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/login', 'UserController@login');
 Route::post('/logout', 'UserController@logout');
 
-Route::get('/groups/{groupId}', 'GroupController@show');
+Route::get('/groups/{groupId}', 'GroupController@show')->middleware('auth:sanctum');
