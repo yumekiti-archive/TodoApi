@@ -21,10 +21,6 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-
-            //group外部キー制約
-            $table->unsignedBigInteger('group_id')->index();
-            $table->foreign('group_id')->references('id')->on('groups');
         });
     }
 
