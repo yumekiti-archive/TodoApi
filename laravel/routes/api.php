@@ -17,4 +17,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/{groupId}', 'GroupController@show');
+Route::get('/groups/{groupId}', 'GroupController@show');

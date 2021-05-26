@@ -29,6 +29,10 @@ up:
 down:
 	$(dc) -f ./docker/docker-compose.yml down
 
+.PHONY: reup
+reup:
+	$(dc) -f ./docker/docker-compose.yml restart
+
 .PHONY: rm
 rm:
 	$(dc) -f ./docker/docker-compose.yml down --rmi all
