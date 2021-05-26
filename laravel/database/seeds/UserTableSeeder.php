@@ -15,8 +15,10 @@ class UserTableSeeder extends Seeder
     {
         //
 
-        factory(User::class, 5)->create([
-            'group_id' => 1,
+        factory(User::class)->create([
+            'name' => 'tester',
+            'email' => 'test@test.test',
+            'password' => bcrypt('testtest')
         ]);
 
     }
