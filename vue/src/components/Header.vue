@@ -6,7 +6,7 @@
                 
             </v-app-bar-nav-icon>
 
-            <v-toolbar-title>Todo</v-toolbar-title>
+            <v-toolbar-title>Stocklist</v-toolbar-title>
 
         </v-app-bar>
         
@@ -31,6 +31,12 @@
                         </v-list-item>
                     </router-link>
 
+                    <router-link to="/item">
+                        <v-list-item>
+                            物一覧
+                        </v-list-item>
+                    </router-link>
+
                 </v-list-item-group>
             </v-list>
         </v-navigation-drawer>
@@ -45,6 +51,6 @@
             return {
                 drawer: false,
             }
-        }
+        },
     }
 </script>

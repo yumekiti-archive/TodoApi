@@ -4,7 +4,7 @@
         <Header />
 
         <v-card-title class="mt-5">
-            <h1 class="mx-auto">test json</h1>
+            <h1 class="mx-auto">Home</h1>
         </v-card-title>
 
         <div v-if="tododata">
